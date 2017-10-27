@@ -2,17 +2,47 @@ import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
+class Item extends Component {
+  constructor(){
+    super()
+    this.state = {
+      color: 'beige'
+    }
+  }
+  render(){
+  return(
+    <div style={{backgroundColor: this.state.color}}>
+      <h2>{this.props.title}</h2>
+      <div>
+        <div>Red</div>
+        <div>Yellow</div>
+        <div>Blue</div>
+      </div>
+    </div>
+  )
+  }
+}
+
+
 class App extends Component {
+  constructor(){
+    super()
+    this.state = {
+      input: '',
+      items: ['Bananas', 'Apples', 'Oranges'] 
+    }
+  }
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h1 className="App-title">Welcome to React</h1>
-        </header>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+       <input type="text" value={this.state.input} />
+       <button>Add Item</button>
+        {this.state.items.map((item) => {
+          return (
+            <Item title={item}/>
+          )
+        })}
+
       </div>
     );
   }
